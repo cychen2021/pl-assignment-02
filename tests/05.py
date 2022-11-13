@@ -5,7 +5,7 @@ test = {
     {
       'cases': [
         {
-          'answer': '4e29d76ed91f86d9b79bb36589747663',
+          'answer': 'Pair(A, nil), where: A is the quoted expression',
           'choices': [
             r"""
             Pair('quote', Pair(A, nil)), where:
@@ -25,7 +25,7 @@ test = {
             """
           ],
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False,
           'question': 'What is the structure of the expressions argument to do_quote_form?'
         }
@@ -38,18 +38,15 @@ test = {
         {
           'code': r"""
           >>> do_quote_form(Pair(3, nil), global_frame)
-          1351269de14c601ae8453ecc67560709
-          # locked
+          3
           >>> do_quote_form(Pair('hi', nil), global_frame)
-          d6af908677dab821d7d9b3126570560b
-          # locked
+          'hi'
           >>> expr = Pair(Pair('+', Pair('x', Pair(2, nil))), nil)
           >>> do_quote_form(expr, global_frame) # Make sure to use Pair notation
-          582c4e1461ad3d910c490d4e6b2ced2c
-          # locked
+          Pair('+', Pair('x', Pair(2, nil)))
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         }
       ],
@@ -66,26 +63,20 @@ test = {
         {
           'code': r"""
           scm> ''hello
-          20f45bb2ec437e1e9b79d546f7d06233
-          # locked
+          (quote hello)
           scm> (quote (1 2))
-          b70abaea0b3ae77610089bf1416daa87
-          # locked
+          (1 2)
           scm> (car '(1 2 3))
-          0f8a045127301b80ad84f23379cea71b
-          # locked
+          1
           scm> (cdr '(1 2))
-          578e0ccae301441c646f9842080cb112
-          # locked
+          (2)
           scm> (cons 'car '('(4 2)))
-          e3e4c89cb2c949747418483ae7f0fb8e
-          # locked
+          (car (quote (4 2)))
           scm> (eval (cons 'car '('(4 2))))
-          290aa5770785fe46a438d3826545dbc4
-          # locked
+          4
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         }
       ],

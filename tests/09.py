@@ -96,23 +96,19 @@ test = {
           ....   (define inner (lambda (z x)
           ....     (+ x (* y 2) (* z 3))))
           ....   (inner x 10)))
-          8a7c320b2d22710d095cb22868c0f2d3
-          # locked
+          outer
           scm> (outer 1 2)
-          c54dea41462a93b418ffe07bf9d1660f
-          # locked
+          17
           scm> (define outer-func (lambda (x y)
           ....   (define inner (lambda (z x)
           ....     (+ x (* y 2) (* z 3))))
           ....   inner))
-          09a3645853e852486406ad15d8e18f69
-          # locked
+          outer-func
           scm> ((outer-func 1 2) 1 10)
-          c54dea41462a93b418ffe07bf9d1660f
-          # locked
+          17
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {

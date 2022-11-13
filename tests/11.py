@@ -7,26 +7,20 @@ test = {
         {
           'code': r"""
           scm> (and)
-          d832513e077c68c940a0abe7f3e3f3f5
-          # locked
+          #t
           scm> (and 1 #f)
-          09910494a8b90e19b00bc155c15f02fb
-          # locked
+          #f
           scm> (and (+ 1 1) 1)
-          0f8a045127301b80ad84f23379cea71b
-          # locked
+          1
           scm> (and #f 5)
-          09910494a8b90e19b00bc155c15f02fb
-          # locked
+          #f
           scm> (and 4 5 (+ 3 3))
-          44f8cd5ad836105d8294c2d770d19891
-          # locked
+          6
           scm> (not (and #t #f 42 (/ 1 0)))
-          d832513e077c68c940a0abe7f3e3f3f5
-          # locked
+          #t
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
@@ -106,26 +100,20 @@ test = {
         {
           'code': r"""
           scm> (or)
-          09910494a8b90e19b00bc155c15f02fb
-          # locked
+          #f
           scm> (or (+ 1 1))
-          c268a6a29ebaf25021185d36b329c434
-          # locked
+          2
           scm> (not (or #f))
-          d832513e077c68c940a0abe7f3e3f3f5
-          # locked
+          #t
           scm> (define (zero) 0)
-          16d1aec60d9b36cba4c693ff2bb08fe5
-          # locked
+          zero
           scm> (or (zero) 3)
-          6d4f64ea4b8847aa1e3e405ec90fd538
-          # locked
+          0
           scm> (or 4 #t (/ 1 0))
-          290aa5770785fe46a438d3826545dbc4
-          # locked
+          4
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {

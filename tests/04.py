@@ -5,7 +5,7 @@ test = {
     {
       'cases': [
         {
-          'answer': 'c059a52bf86f2c6183f1afc265d5ded1',
+          'answer': 'Pair(A, Pair(B, nil)), where: A is the symbol being bound, B is an expression whose value should be evaluated and bound to A',
           'choices': [
             r"""
             Pair(A, Pair(B, nil)), where:
@@ -34,12 +34,12 @@ test = {
             """
           ],
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False,
           'question': 'What is the structure of the expressions argument to do_define_form?'
         },
         {
-          'answer': '4fee4e15275ef812930c8176277445f2',
+          'answer': 'define',
           'choices': [
             'make_child_frame',
             'define',
@@ -47,7 +47,7 @@ test = {
             'bindings'
           ],
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False,
           'question': r"""
           What method of a Frame instance will bind
@@ -63,36 +63,29 @@ test = {
         {
           'code': r"""
           scm> (define size 2)
-          9c37c086ea50549f85419efca0d7ea92
-          # locked
+          size
           scm> size
-          c268a6a29ebaf25021185d36b329c434
-          # locked
+          2
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           scm> (define x (+ 2 3))
-          64030e295636c5ae78e07a452cac2289
-          # locked
+          x
           scm> x
-          0ab95ffe40ec65228e7afb779fbf50aa
-          # locked
+          5
           scm> (define x (+ 2 7))
-          64030e295636c5ae78e07a452cac2289
-          # locked
+          x
           scm> x
-          1112648aa05de799cad1273f921dfa13
-          # locked
+          9
           scm> (eval (define tau 6.28)) ; eval takes an expression represented as a list and evaluates it
-          0396f79ad1e5a2bebf2ea974b0c3faae
-          # locked
+          6.28
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {

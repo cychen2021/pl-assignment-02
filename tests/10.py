@@ -7,14 +7,12 @@ test = {
         {
           'code': r"""
           scm> (define (f x y) (+ x y))
-          206c1f5e311d5bea20cf0df87f8bb1ea
-          # locked
+          f
           scm> f
-          242e76bc300c05c2937102bc2c7526fd
-          # locked
+          (lambda (x y) (+ x y))
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
@@ -31,14 +29,12 @@ test = {
         {
           'code': r"""
           scm> (define (f x) (* x x))
-          206c1f5e311d5bea20cf0df87f8bb1ea
-          # locked
+          f
           scm> f
-          ba5840280a625be3bafcfa3a09762b83
-          # locked
+          (lambda (x) (* x x))
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {

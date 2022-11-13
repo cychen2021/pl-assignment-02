@@ -8,22 +8,18 @@ test = {
           'code': r"""
           >>> expr = read_line('(+ 2 2)')
           >>> scheme_eval(expr, create_global_frame()) # Type SchemeError if you think this errors
-          290aa5770785fe46a438d3826545dbc4
-          # locked
+          4
           >>> scheme_eval(Pair('+', Pair(2, Pair(2, nil))), create_global_frame()) # Type SchemeError if you think this errors
-          290aa5770785fe46a438d3826545dbc4
-          # locked
+          4
           >>> expr = read_line('(+ (+ 2 2) (+ 1 3) (* 1 4))')
           >>> scheme_eval(expr, create_global_frame()) # Type SchemeError if you think this errors
-          a49a54ba5e030f06df2cb678adcd275e
-          # locked
+          12
           >>> expr = read_line('(yolo)')
           >>> scheme_eval(expr, create_global_frame()) # Type SchemeError if you think this errors
-          55386b61b224cc69dcafef802309105a
-          # locked
+          SchemeError
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         }
       ],
@@ -40,17 +36,14 @@ test = {
         {
           'code': r"""
           scm> (* (+ 3 2) (+ 1 7)) ; Type SchemeError if you think this errors
-          6604651eb1de33d36ef2e8427efcb811
-          # locked
+          40
           scm> (1 2) ; Type SchemeError if you think this errors
-          55386b61b224cc69dcafef802309105a
-          # locked
+          SchemeError
           scm> (1 (print 0)) ; validate_procedure should be called before operands are evaluated
-          55386b61b224cc69dcafef802309105a
-          # locked
+          SchemeError
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {

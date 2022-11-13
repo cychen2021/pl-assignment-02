@@ -9,21 +9,17 @@ test = {
           >>> global_frame = create_global_frame()
           >>> global_frame.define("x", 3)
           >>> global_frame.parent is None
-          06ec923dd70ef4606b4ea940252d4e8b
-          # locked
+          True
           >>> global_frame.lookup("x")
-          1351269de14c601ae8453ecc67560709
-          # locked
+          3
           >>> global_frame.define("x", 2)
           >>> global_frame.lookup("x")
-          c268a6a29ebaf25021185d36b329c434
-          # locked
+          2
           >>> global_frame.lookup("foo")
-          55386b61b224cc69dcafef802309105a
-          # locked
+          SchemeError
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
@@ -33,17 +29,14 @@ test = {
           >>> first_frame.define("y", False)
           >>> second_frame = Frame(first_frame)
           >>> second_frame.parent == first_frame
-          06ec923dd70ef4606b4ea940252d4e8b
-          # locked
+          True
           >>> second_frame.lookup("x")
-          1351269de14c601ae8453ecc67560709
-          # locked
+          3
           >>> second_frame.lookup("y")
-          2d72b2741eeb5f0f806ace0172369f9c
-          # locked
+          False
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
@@ -54,23 +47,19 @@ test = {
           >>> third_frame = Frame(second_frame)
           >>> fourth_frame = Frame(third_frame)
           >>> fourth_frame.lookup("x")
-          1351269de14c601ae8453ecc67560709
-          # locked
+          3
           >>> second_frame.define("y", 1)
           >>> fourth_frame.lookup("y")
-          0f8a045127301b80ad84f23379cea71b
-          # locked
+          1
           >>> first_frame.define("y", 0)
           >>> fourth_frame.lookup("y")
-          0f8a045127301b80ad84f23379cea71b
-          # locked
+          1
           >>> fourth_frame.define("y", 2)
           >>> fourth_frame.lookup("y")
-          c268a6a29ebaf25021185d36b329c434
-          # locked
+          2
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {

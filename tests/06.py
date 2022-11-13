@@ -7,29 +7,25 @@ test = {
         {
           'code': r"""
           >>> eval_all(Pair(2, nil), env)
-          c268a6a29ebaf25021185d36b329c434
-          # locked
+          2
           >>> eval_all(Pair(4, Pair(5, nil)), env)
-          0ab95ffe40ec65228e7afb779fbf50aa
-          # locked
+          5
           >>> eval_all(nil, env) # return None (meaning undefined)
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           >>> lst = Pair(1, Pair(2, Pair(3, nil)))
           >>> eval_all(lst, env)
-          1351269de14c601ae8453ecc67560709
-          # locked
+          3
           >>> lst     # The list should not be mutated!
-          d35937a26aa4c4d1f86ee9a04092281b
-          # locked
+          Pair(1, Pair(2, Pair(3, nil)))
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         }
       ],
@@ -46,36 +42,29 @@ test = {
         {
           'code': r"""
           scm> (begin (+ 2 3) (+ 5 6))
-          3ad72f8913a675690a2adcc3f13e0739
-          # locked
+          11
           scm> (begin (define x 3) x)
-          1351269de14c601ae8453ecc67560709
-          # locked
+          3
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           scm> (begin 30 '(+ 2 2))
-          0e5bbd1b15403208e2888ee24f3bf521
-          # locked
+          (+ 2 2)
           scm> (define x 0)
-          64030e295636c5ae78e07a452cac2289
-          # locked
+          x
           scm> (begin (define x (+ x 1)) 42 (define y (+ x 1)))
-          557b055db9ceb996548b33392eedfbad
-          # locked
+          y
           scm> x
-          0f8a045127301b80ad84f23379cea71b
-          # locked
+          1
           scm> y
-          c268a6a29ebaf25021185d36b329c434
-          # locked
+          2
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
