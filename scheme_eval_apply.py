@@ -1,6 +1,7 @@
 import sys
 import os
 
+import scheme_builtins
 from pair import *
 from scheme_utils import *
 from ucb import main, trace
@@ -35,7 +36,17 @@ def scheme_eval(expr, env, _=None):  # Optional third argument is ignored
         return scheme_forms.SPECIAL_FORMS[first](rest, env)
     else:
         # BEGIN PROBLEM 3
-        "*** YOUR CODE HERE ***"
+        operator = None
+        if isinstance(first, str):
+            for (name, py_func, internal_name, expected_env) in scheme_builtins.BUILTINS:
+                if isinstance(name, str) and first == name or isinstance(name, list) and first in name:
+                    operator = BuiltinProcedure(py_func, expected_env, internal_name)
+                    break
+        elif scheme_listp(first):
+            operator = scheme_eval(first, env)
+        args = rest.map(lambda x: scheme_eval(x, env))
+        validate_procedure(operator)
+        return scheme_apply(operator, args, env)
         # END PROBLEM 3
 
 
