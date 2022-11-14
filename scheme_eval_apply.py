@@ -45,7 +45,18 @@ def scheme_apply(procedure, args, env):
     validate_procedure(procedure)
     if isinstance(procedure, BuiltinProcedure):
         # BEGIN PROBLEM 2
-        "*** YOUR CODE HERE ***"
+        def pairs_to_list(p):
+            r = []
+            ptr = p
+            while ptr is not nil:
+                r.append(ptr.first)
+                ptr = ptr.rest
+            return r
+        args = pairs_to_list(args) + ([env] if procedure.expect_env else [])
+        try:
+            return procedure.py_func(*args)
+        except TypeError:
+            raise SchemeError('incorrect number of arguments')
         # END PROBLEM 2
     elif isinstance(procedure, LambdaProcedure):
         # BEGIN PROBLEM 9
