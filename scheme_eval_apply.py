@@ -45,6 +45,8 @@ def scheme_eval(expr, env, _=None):  # Optional third argument is ignored
                     if first == name:
                         operator = BuiltinProcedure(py_func, expected_env, internal_name)
                         break
+            if operator is None:
+                operator = env.lookup(first)
         elif scheme_listp(first):
             operator = scheme_eval(first, env)
         args = rest.map(lambda x: scheme_eval(x, env))
@@ -74,7 +76,8 @@ def scheme_apply(procedure, args, env):
         # END PROBLEM 2
     elif isinstance(procedure, LambdaProcedure):
         # BEGIN PROBLEM 9
-        "*** YOUR CODE HERE ***"
+        child_frame = procedure.env.make_child_frame(procedure.formals, args)
+        return eval_all(procedure.body, child_frame)
         # END PROBLEM 9
     elif isinstance(procedure, MuProcedure):
         child_frame = env.make_child_frame(procedure.formals, args)
