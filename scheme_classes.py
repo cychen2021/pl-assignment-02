@@ -58,7 +58,20 @@ class Frame:
         if len(formals) != len(vals):
             raise SchemeError('Incorrect number of arguments to function call')
         # BEGIN PROBLEM 8
-        "*** YOUR CODE HERE ***"
+
+        def pairs_to_list(p):
+            r = []
+            ptr = p
+            while ptr is not nil:
+                r.append(ptr.first)
+                ptr = ptr.rest
+            return r
+        formals = pairs_to_list(formals)
+        vals = pairs_to_list(vals)
+        child = Frame(self)
+        for f, v in zip(formals, vals):
+            child.define(f, v)
+        return child
         # END PROBLEM 8
 
 ##############
