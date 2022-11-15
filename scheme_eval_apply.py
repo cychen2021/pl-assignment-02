@@ -38,10 +38,13 @@ def scheme_eval(expr, env, _=None):  # Optional third argument is ignored
         # BEGIN PROBLEM 3
         operator = None
         if isinstance(first, str):
-            for (name, py_func, internal_name, expected_env) in scheme_builtins.BUILTINS:
-                if first == name:
-                    operator = BuiltinProcedure(py_func, expected_env, internal_name)
-                    break
+            if first == 'eval':
+                operator = BuiltinProcedure(scheme_eval, True, 'eval')
+            else:
+                for (name, py_func, internal_name, expected_env) in scheme_builtins.BUILTINS:
+                    if first == name:
+                        operator = BuiltinProcedure(py_func, expected_env, internal_name)
+                        break
         elif scheme_listp(first):
             operator = scheme_eval(first, env)
         args = rest.map(lambda x: scheme_eval(x, env))
