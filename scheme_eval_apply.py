@@ -1,7 +1,6 @@
 import sys
 import os
 
-import scheme_builtins
 from pair import *
 from scheme_utils import *
 from ucb import main, trace
@@ -14,6 +13,7 @@ import scheme_forms
 
 
 def scheme_eval(expr, env, _=None):  # Optional third argument is ignored
+    from scheme_builtins import BUILTINS
     """Evaluate Scheme expression EXPR in Frame ENV.
 
     >>> expr = read_line('(+ 2 2)')
@@ -41,7 +41,7 @@ def scheme_eval(expr, env, _=None):  # Optional third argument is ignored
             if first == 'eval':
                 operator = BuiltinProcedure(scheme_eval, True, 'eval')
             else:
-                for (name, py_func, internal_name, expected_env) in scheme_builtins.BUILTINS:
+                for (name, py_func, internal_name, expected_env) in BUILTINS:
                     if first == name:
                         operator = BuiltinProcedure(py_func, expected_env, internal_name)
                         break
