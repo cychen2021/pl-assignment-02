@@ -39,7 +39,7 @@ def scheme_eval(expr, env, _=None):  # Optional third argument is ignored
         operator = None
         if isinstance(first, str):
             for (name, py_func, internal_name, expected_env) in scheme_builtins.BUILTINS:
-                if isinstance(name, str) and first == name or isinstance(name, list) and first in name:
+                if first == name:
                     operator = BuiltinProcedure(py_func, expected_env, internal_name)
                     break
         elif scheme_listp(first):
