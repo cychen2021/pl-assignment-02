@@ -3,6 +3,7 @@ from scheme_utils import *
 from scheme_classes import *
 from scheme_builtins import *
 
+
 #################
 # Special Forms #
 #################
@@ -128,7 +129,15 @@ def do_and_form(expressions, env):
     False
     """
     # BEGIN PROBLEM 11
-    "*** YOUR CODE HERE ***"
+    ptr = expressions
+    r = True
+    while ptr is not nil:
+        tmp = scheme_eval(ptr.first, env)
+        if tmp is False:
+            return False
+        r = tmp
+        ptr = ptr.rest
+    return r
     # END PROBLEM 11
 
 
@@ -147,7 +156,15 @@ def do_or_form(expressions, env):
     6
     """
     # BEGIN PROBLEM 11
-    "*** YOUR CODE HERE ***"
+    ptr = expressions
+    r = False
+    while ptr is not nil:
+        tmp = scheme_eval(ptr.first, env)
+        if tmp is not False:
+            r = tmp
+            break
+        ptr = ptr.rest
+    return r
     # END PROBLEM 11
 
 
@@ -225,6 +242,7 @@ def do_define_macro(expressions, env):
 def do_quasiquote_form(expressions, env):
     """Evaluate a quasiquote form with parameters EXPRESSIONS in
     Frame ENV."""
+
     def quasiquote_item(val, env, level):
         """Evaluate Scheme expression VAL that is nested at depth LEVEL in
         a quasiquote form in Frame ENV."""
