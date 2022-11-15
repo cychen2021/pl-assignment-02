@@ -212,7 +212,24 @@ def make_let_frame(bindings, env):
         raise SchemeError('bad bindings list in let form')
     names = values = nil
     # BEGIN PROBLEM 12
-    "*** YOUR CODE HERE ***"
+    formals = nil
+    values = nil
+    record = set()
+    ptr = bindings
+    while ptr is not nil:
+        binding = ptr.first
+        validate_form(binding, 2, 2)
+        name = binding.first
+        if name in record:
+            raise SchemeError(f'binding {name} conflict in let form')
+        record.add(name)
+        if not scheme_symbolp(name):
+            raise SchemeError(f'{name} cannot be bound')
+        value = scheme_eval(binding.rest.first, env)
+        formals = Pair(name, formals)
+        values = Pair(value, values)
+        ptr = ptr.rest
+    return env.make_child_frame(formals, values)
     # END PROBLEM 12
     return env.make_child_frame(names, values)
 
