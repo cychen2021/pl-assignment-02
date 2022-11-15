@@ -13,7 +13,6 @@ import scheme_forms
 
 
 def scheme_eval(expr, env, _=None):  # Optional third argument is ignored
-    from scheme_builtins import BUILTINS
     """Evaluate Scheme expression EXPR in Frame ENV.
 
     >>> expr = read_line('(+ 2 2)')
@@ -38,18 +37,7 @@ def scheme_eval(expr, env, _=None):  # Optional third argument is ignored
         # BEGIN PROBLEM 3
         operator = None
         if isinstance(first, str):
-            try:
-                operator = env.lookup(first)
-            except SchemeError:
-                pass
-            if operator is None:
-                if first == 'eval':
-                    operator = BuiltinProcedure(scheme_eval, True, 'eval')
-                else:
-                    for (name, py_func, internal_name, expected_env) in BUILTINS:
-                        if first == name:
-                            operator = BuiltinProcedure(py_func, expected_env, internal_name)
-                            break
+            operator = env.lookup(first)
         elif scheme_listp(first):
             operator = scheme_eval(first, env)
         args = rest.map(lambda x: scheme_eval(x, env))
